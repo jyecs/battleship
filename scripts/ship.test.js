@@ -1,4 +1,4 @@
-import { Ship } from "./script"
+import Ship from "./ship";
 
 test("ship length is what we give it", () => {
     const testShip = Ship(3);

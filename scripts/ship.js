@@ -1,4 +1,4 @@
-function Ship(length) {
+export default function Ship(length) {
     const shipLength = length;
     let timesHit = 0;
 
@@ -10,5 +10,3 @@ function Ship(length) {
 
     return { getLength, isSunk, getHit };
 }
-
-export { Ship }
