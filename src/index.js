@@ -3,10 +3,8 @@ import GameBoard from "./gameboard";
 import Player from "./player";
 
 function Battleship() {
-    const playerOne = Player();
-    const playerTwo = Player(true);
-    const playerOneBoard = GameBoard();
-    const PlayerTwoBoard = GameBoard();
+    const players = [Player(), Player(true)];
+    const boards = [GameBoard(), GameBoard];
 
     const playerOneShips = [Ship(2), Ship(3), Ship(3), Ship(4), Ship(5)];
     const playerTwoShips = [Ship(2), Ship(3), Ship(3), Ship(4), Ship(5)];
@@ -31,13 +29,33 @@ function Battleship() {
         }
     }
 
-    placeShip(playerOneShips[0], 0, 0, true, playerOneBoard);
-    placeShip(playerOneShips[1], 2, 3, false, playerOneBoard);
-    placeShip(playerOneShips[2], 5, 3, false, playerOneBoard);
-    placeShip(playerOneShips[3], 6, 0, true, playerOneBoard);
-    placeShip(playerOneShips[4], 5, 9, true, playerOneBoard);
+    placeShip(playerOneShips[0], 0, 0, true, boards[0]);
+    placeShip(playerOneShips[1], 2, 3, false, boards[0]);
+    placeShip(playerOneShips[2], 5, 3, false, boards[0]);
+    placeShip(playerOneShips[3], 6, 0, true, boards[0]);
+    placeShip(playerOneShips[4], 5, 9, true, boards[0]);
 
-    console.log(playerOneBoard.getBoard());
+    placeShip(playerTwoShips[0], 0, 0, true, boards[1]);
+    placeShip(playerTwoShips[0], 2, 3, false, boards[1]);
+    placeShip(playerTwoShips[0], 5, 3, false, boards[1]);
+    placeShip(playerTwoShips[0], 6, 0, true, boards[1]);
+    placeShip(playerTwoShips[0], 5, 9, true, boards[1]);
+
+    return { players, boards };
+
 }
 
-Battleship();
+function ScreenController() {
+    const game = Battleship();
+    const playerBoard = document.querySelector("#player");
+    const enemyBoard = document.querySelector("#enemy");
+    
+    const renderHitsAndMisses = (playerBoard) => {
+        
+    }
+
+
+    renderBoards();
+}
+
+ScreenController();

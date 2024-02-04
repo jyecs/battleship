@@ -23,9 +23,13 @@ export default function GameBoard(ships = 5) {
         return seenAttacks.has(`${row} ${col}`);
     }
 
+    const isAttackMissHit = (row, col) => {
+        return seenAttacks.get(`${row} ${col}`);
+    }
+
     const allShipsSunk = () => sunkShips >= numShips;
 
     const getBoard = () => board;
     
-    return { recieveAttack, getBoard, allShipsSunk, hasSeenAttack }
+    return { recieveAttack, getBoard, allShipsSunk, hasSeenAttack, isAttackMissHit }
 }
