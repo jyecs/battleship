@@ -4,7 +4,7 @@ export default function Ship(length) {
 
     const getLength = () => shipLength;
 
-    const getHit = () => timesHit++;
+    const getHit = () => { timesHit++ };
 
     const isSunk = () => timesHit >= shipLength;
 
