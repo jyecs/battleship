@@ -6,12 +6,9 @@ function Ship(length) {
 
     const getHit = () => timesHit++;
 
-    const isSunk = () => timesHit === shipLength;
+    const isSunk = () => timesHit >= shipLength;
 
     return { getLength, isSunk, getHit };
 }
-
-let testShip = Ship(3);
-console.log(testShip.getLength());
 
 export { Ship }
