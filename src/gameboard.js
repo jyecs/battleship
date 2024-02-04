@@ -1,20 +1,19 @@
-import Ship from "./ship";
-
 export default function GameBoard(ships = 5) {
     const numShips = ships;
     const board = new Map();
-    const seenAttacks = new Set();
+    const seenAttacks = new Map();
     let sunkShips = 0;
 
     const recieveAttack = (row, col) => {
-        if (seenAttacks.has(`${row} ${col}`)) { 
+        if (hasSeenAttack(row, col)) { 
             return "You've already attacked this place!";
         }
-        seenAttacks.add(`${row} ${col}`);
         const ship = board.get(`${row} ${col}`)
         if (!ship) {
+            seenAttacks.set(`${row} ${col}`, false);
             return "Attack Missed!";
         }
+        seenAttacks.set(`${row} ${col}`, true);
         ship.getHit();
         if (ship.isSunk()) { sunkShips += 1 };
         return "Attack Hit!";

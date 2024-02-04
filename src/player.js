@@ -1,11 +1,11 @@
 import GameBoard from "./gameboard";
 
 export default function Player(isComputer = false) {
-    const isComputer = isComputer;
+    const isComputerPlayer = isComputer;
     const UNIFORM_CONSTANT = 11;
     
     const playMove = (board, ...coords) => {
-        if (isComputer) {
+        if (isComputerPlayer) {
             playComputerMove(board);
         }
         const row = coords[0];
