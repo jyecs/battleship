@@ -19,10 +19,13 @@ button {
     padding: 0;
     border: 0;
     outline: 1px blue solid;
+    font-size: 50px;
+    text-align: center;
+    color: red;
 }
 
 button:hover {
-    background-color: red;
+    background-color: lightblue;
 }
 
 #player {
@@ -33,4 +36,12 @@ button:hover {
 #enemy {
     grid-row-start: 2;
     grid-column-start: 4;
+}
+
+.ship {
+    background-color: green;
+}
+
+.miss {
+    background-color: grey;
 }
