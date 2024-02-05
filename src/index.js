@@ -4,7 +4,7 @@ import Player from "./player";
 
 function Battleship() {
     const players = [Player(), Player(true)];
-    const boards = [GameBoard(), GameBoard];
+    const boards = [GameBoard(), GameBoard()];
 
     const playerOneShips = [Ship(2), Ship(3), Ship(3), Ship(4), Ship(5)];
     const playerTwoShips = [Ship(2), Ship(3), Ship(3), Ship(4), Ship(5)];
@@ -50,12 +50,19 @@ function ScreenController() {
     const playerBoard = document.querySelector("#player");
     const enemyBoard = document.querySelector("#enemy");
     
-    const renderHitsAndMisses = (playerBoard) => {
-        
+    const constructDivBoard = (container) => {
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                const button = document.createElement("button");
+                container.appendChild(button);
+
+            }
+        }
     }
 
 
-    renderBoards();
+    constructDivBoard(playerBoard);
+    constructDivBoard(enemyBoard);
 }
 
 ScreenController();
