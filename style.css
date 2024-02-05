@@ -1,0 +1,36 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    place-items: center;
+}
+
+body {
+    margin-top: 8%;
+    display: grid;
+    padding: 20px 20px 20px 20px;
+    grid-template-columns: 1fr 500px 1fr 500px 1fr;
+    grid-template-rows: 1fr 500px 1fr;
+}
+
+button {
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border: 0;
+    outline: 1px blue solid;
+}
+
+button:hover {
+    background-color: red;
+}
+
+#player {
+    grid-row-start: 2;;
+    grid-column-start: 2;
+}
+
+#enemy {
+    grid-row-start: 2;
+    grid-column-start: 4;
+}
