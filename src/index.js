@@ -71,7 +71,6 @@ function ScreenController() {
 
     const renderHitsAndMisses = (container, gameboard) => {
         const hitsAndMisses = gameboard.getSeenAttacks().entries();
-        console.log(hitsAndMisses);
         for (const attack of hitsAndMisses) {
             if (attack[1]) {
                 document.querySelector(`${container} [data-coord='${attack[0]}']`).innerHTML = "X";
@@ -96,7 +95,6 @@ function ScreenController() {
         buttons.forEach((button) => {
             button.addEventListener("click", (e) => {
                 const coords = e.target.dataset.coord.split(" ");
-                console.log(coords);
                 const row = parseInt(coords[0]);
                 const col = parseInt(coords[1]);
                 game.boards[1].recieveAttack(row, col);
