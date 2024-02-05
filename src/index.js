@@ -36,10 +36,10 @@ function Battleship() {
     placeShip(playerOneShips[4], 5, 9, true, boards[0]);
 
     placeShip(playerTwoShips[0], 0, 0, true, boards[1]);
-    placeShip(playerTwoShips[0], 2, 3, false, boards[1]);
-    placeShip(playerTwoShips[0], 5, 3, false, boards[1]);
-    placeShip(playerTwoShips[0], 6, 0, true, boards[1]);
-    placeShip(playerTwoShips[0], 5, 9, true, boards[1]);
+    placeShip(playerTwoShips[1], 2, 3, false, boards[1]);
+    placeShip(playerTwoShips[2], 5, 3, false, boards[1]);
+    placeShip(playerTwoShips[3], 6, 0, true, boards[1]);
+    placeShip(playerTwoShips[4], 5, 9, true, boards[1]);
 
     return { players, boards };
 
@@ -51,18 +51,62 @@ function ScreenController() {
     const enemyBoard = document.querySelector("#enemy");
     
     const constructDivBoard = (container) => {
+        container.replaceChildren();
         for (let i = 0; i < 10; i++) {
             for (let j = 0; j < 10; j++) {
                 const button = document.createElement("button");
+                button.dataset.coord = `${i} ${j}`
                 container.appendChild(button);
 
             }
         }
     }
 
+    const renderShips = (container, gameboard) => {
+        const ships = gameboard.getBoard().keys();
+        for (const ship of ships) {
+            document.querySelector(`${container} [data-coord='${ship}']`).classList.add("ship");
+        }
+    }
 
-    constructDivBoard(playerBoard);
-    constructDivBoard(enemyBoard);
+    const renderHitsAndMisses = (container, gameboard) => {
+        const hitsAndMisses = gameboard.getSeenAttacks().entries();
+        console.log(hitsAndMisses);
+        for (const attack of hitsAndMisses) {
+            if (attack[1]) {
+                document.querySelector(`${container} [data-coord='${attack[0]}']`).innerHTML = "X";
+            } else {
+                document.querySelector(`${container} [data-coord='${attack[0]}']`).classList.add("miss");
+            }
+        }
+
+    };
+
+    const renderBoard = () => {
+        constructDivBoard(playerBoard);
+        constructDivBoard(enemyBoard);
+        renderShips("#player", game.boards[0]);
+        renderHitsAndMisses("#player", game.boards[0]);
+        renderHitsAndMisses("#enemy", game.boards[1]);
+        addListenersToEnemy();
+    };
+
+    const addListenersToEnemy = () => {
+        const buttons = document.querySelectorAll("#enemy > button");
+        buttons.forEach((button) => {
+            button.addEventListener("click", (e) => {
+                const coords = e.target.dataset.coord.split(" ");
+                console.log(coords);
+                const row = parseInt(coords[0]);
+                const col = parseInt(coords[1]);
+                game.boards[1].recieveAttack(row, col);
+                game.players[1].playMove(game.boards[0]);
+                renderBoard();
+            });
+        });
+    };
+
+    renderBoard();
 }
 
 ScreenController();

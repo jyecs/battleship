@@ -19,17 +19,15 @@ export default function GameBoard(ships = 5) {
         return "Attack Hit!";
     }
 
+    const allShipsSunk = () => sunkShips >= numShips;
+
     const hasSeenAttack = (row, col) => {
         return seenAttacks.has(`${row} ${col}`);
     }
 
-    const isAttackMissHit = (row, col) => {
-        return seenAttacks.get(`${row} ${col}`);
-    }
-
-    const allShipsSunk = () => sunkShips >= numShips;
-
     const getBoard = () => board;
+
+    const getSeenAttacks = () => seenAttacks;
     
-    return { recieveAttack, getBoard, allShipsSunk, hasSeenAttack, isAttackMissHit }
+    return { recieveAttack, getBoard, allShipsSunk, getSeenAttacks, hasSeenAttack }
 }
