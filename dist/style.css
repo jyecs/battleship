@@ -16,10 +16,11 @@ body {
 button {
     height: 50px;
     width: 50px;
-    padding: 0;
-    border: 0;
+    padding: 0px;
+    border: 0px;
     outline: 1px blue solid;
-    font-size: 50px;
+    line-height: 0px;
+    font-size: 65px;
     text-align: center;
     color: red;
 }
